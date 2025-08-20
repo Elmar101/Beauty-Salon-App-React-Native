@@ -14,9 +14,9 @@ interface IUser extends Document {
     isVerified: boolean;
     verificationCode: string | null;
     verificationCodeExpires: Date | null;
-    refreshToken: string;
-    forgotPasswordCode: string;
-    forgotPasswordExpires: Date;
+    refreshToken: string | null;
+    forgotPasswordCode: string | null;
+    forgotPasswordExpires: Date | null;
     branchId: string;
     serviceIds: string[];
     isDeleted: boolean;
@@ -52,11 +52,11 @@ const userSchema = new Schema<IUser>(
     gender: { type: String, enum: ["male", "female"], default: "male" },
     photoUrl: { type: String, default: "https://i.pravatar.cc/150" },
     isVerified: { type: Boolean, default: false },
-    verificationCode: { type: String, default: null },
-    verificationCodeExpires: { type: Date, default: Date.now() },
-    refreshToken: { type: String, default: null },
-    forgotPasswordCode: { type: String, default: null },
-    forgotPasswordExpires: { type: Date, default: Date.now() },
+    verificationCode: { type: String, default: null, select: false },
+    verificationCodeExpires: { type: Date, default: Date.now(), select: false },
+    refreshToken: { type: String, default: null, select: false },
+    forgotPasswordCode: { type: String, default: null, select: false },
+    forgotPasswordExpires: { type: Date, default: Date.now(), select: false },
     branchId: { type: String, default: null },
     serviceIds: [{ type: String }],
     isDeleted: { type: Boolean, default: false },

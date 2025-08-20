@@ -1,9 +1,8 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import {authRouter} from './routes';
+import {authRouter, userRouter} from './routes';
 import path from 'path';
 import { connectDB } from './db';
-import { uploadDir } from './utils/uploadFile';
 
 dotenv.config({ path: './.env' });
 
@@ -13,6 +12,7 @@ app.use(express.json());
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/users', userRouter);
 
 connectDB();
 
